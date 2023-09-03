@@ -1,6 +1,8 @@
 .App {
   height: 100vh;
-
-  background: linear-gradient(to left, green, white);
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background-image: radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+  background-size: 10px 10px;
   font-family: sans-serif;
 }

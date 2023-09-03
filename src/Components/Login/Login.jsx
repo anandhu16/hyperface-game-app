@@ -5,8 +5,11 @@ import "./login.css";
 const Login = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState();
+  const login = new BroadcastChannel("login");
 
   const handleLogin = () => {
+    sessionStorage.setItem("user", userName);
+    login.postMessage("change");
     if (localStorage.getItem("userList") !== null) {
       const tempUserList = JSON.parse(localStorage.getItem("userList"));
       const tempUserData = JSON.parse(localStorage.getItem("userDataList"));
@@ -42,33 +45,41 @@ const Login = () => {
       <div className="form-box">
         <div className="form-content">
           <form>
-            <div className="">
-              <div className="">
-                <span className="">
-                  <i class="fa fa-user-circle" style={{ color: "white" }}></i>
-                </span>
+            <div className="login-top">
+              <div className="login-icon-container">
+                <i className="fa fa-user-circle" style={{ color: "white" }}></i>
               </div>
-              <input
-                type="text"
-                className=""
-                placeholder="Username"
-                value={userName}
-                onChange={(event) => {
-                  setUserName(event.target.value);
-                }}
-              />
+              <div className="form__group field">
+                <input
+                  type="input"
+                  className="form__field"
+                  placeholder="Name"
+                  name="name"
+                  id="name"
+                  value={userName}
+                  onChange={(event) => {
+                    setUserName(event.target.value);
+                  }}
+                  required
+                />
+                <label for="name" className="form__label">
+                  Name
+                </label>
+              </div>
             </div>
-
-            <button
-              type="button"
-              className="btn btn-secondary btn-block"
-              onClick={() => {
-                handleLogin();
-              }}
-            >
-              LOGIN
-            </button>
           </form>
+        </div>
+        <div className="button-login-div">
+          <button
+            type="button"
+            className="button-34"
+            role="button"
+            onClick={() => {
+              handleLogin();
+            }}
+          >
+            LOGIN
+          </button>
         </div>
       </div>
     </div>

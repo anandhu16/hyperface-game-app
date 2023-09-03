@@ -1,8 +1,6 @@
 .leaderboard-container {
   display: flex;
   flex-direction: column;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px -15px 25px,
-    rgba(0, 0, 0, 0.05) 0px -5px 10px;
 }
 
 .leaderboard-top3-container {
@@ -19,6 +17,68 @@
 .leaderboard-lower-container {
   width: 100vw;
   background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 60vh;
   border-radius: 16px 16px 0 0;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px -15px 25px,
+    rgba(0, 0, 0, 0.05) 0px -5px 10px;
+}
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  margin: 12px;
+  padding: 12px 40px;
+  width: 70%;
+  max-width: 400px;
+}
+
+.leaderboard-second {
+  font-size: xx-large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(249, 250, 255);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  margin: 12px;
+  padding: 12px 40px;
+  height: 20vh;
+}
+
+.leaderboard-first {
+  font-size: xx-large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(249, 250, 255);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  margin: 12px;
+  padding: 12px 40px;
+  height: 30vh;
+}
+
+.leaderboard-third {
+  font-size: xx-large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(249, 250, 255);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  margin: 12px;
+  padding: 12px 40px;
+  height: 15vh;
+}
+.podium-text {
+  font-size: small;
 }

@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./home.css";
 
 const Home = () => {
   const [queueFull, setQueueFull] = useState();
   const [userQueued, setUSerQueued] = useState();
   const location = useLocation();
   const navigate = useNavigate();
-  const userName = location.state.userName;
+  const [userName, setUserName] = useState("");
   const [OpponentName, setOpponentName] = useState();
 
   const queue = new BroadcastChannel("dcode");
+  useEffect(() => {
+    if (!sessionStorage.getItem("user")) {
+      navigate("/");
+    } else {
+      setUserName(location.state.userName);
+    }
+  }, []);
 
   queue.addEventListener("message", (e) => {
     console.log(e);
@@ -49,12 +57,17 @@ const Home = () => {
   };
 
   return (
-    <div>
-      {!queueFull && <p>Click on the Play Button to Start the Game</p>}
-      {userQueued && <p>Waiting for Opponent</p>}
-      {queueFull && <p>No slots available</p>}
+    <div className="main-container-home">
+      <div className="status-text">
+        {!queueFull && !userQueued && (
+          <p>Click on the Play Button to Start the Game</p>
+        )}
+        {userQueued && <p>Waiting for Opponent</p>}
+        {queueFull && <p>No slots available</p>}
+      </div>
       <button
-        className="button"
+        className="button-home"
+        role="button"
         onClick={() => {
           handleQueue();
         }}
