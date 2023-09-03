@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import "./game.css";
 import { useNavigate } from "react-router-dom";
+import rock from "../../assets/images/rock.png"
+import paper from "../../assets/images/paper.png"
+import scissor from "../../assets/images/scissors.png"
 
 const Game = () => {
   const navigate = useNavigate();
@@ -144,14 +147,14 @@ const Game = () => {
           {userChoice ? (
             <img
               className="user-hand"
-              src={`../images/${userChoice}.png`}
+              src={userChoice === "paper" ? paper: userChoice === "rock" ? rock : scissor}
               alt=""
             ></img>
           ) : (
             <div className="shake-game">
               <img
                 className="user-hand"
-                src={`../images/rock.png`}
+                src={rock}
                 alt=""
               ></img>{" "}
             </div>
@@ -161,14 +164,14 @@ const Game = () => {
           {computerChoice && userChoice ? (
             <img
               className="computer-hand"
-              src={`../images/${computerChoice}.png`}
+              src={computerChoice === "paper" ? paper: computerChoice === "rock" ? rock : scissor}
               alt=""
             ></img>
           ) : (
             <div className="shake-game">
               <img
                 className="computer-hand"
-                src={`../images/rock.png`}
+                src={rock}
                 alt=""
               ></img>{" "}
             </div>

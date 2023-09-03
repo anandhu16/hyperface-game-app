@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
+import podium from "../../assets/images/podium.png"
+import play from "../../assets/images/play.png"
 
 const Header = () => {
   const [name, setName] = useState();
@@ -30,10 +32,10 @@ const Header = () => {
               <img
                 onClick={() => navigate("/leaderBoard")}
                 className="leader-board"
-                src={`../images/podium.png`}
+                src={podium}
                 alt=""
               ></img>
-              <img className="play" src={`../images/play.png`} alt=""></img>
+              <img className="play" src={play} alt=""></img>
             </div>
             <div className="header-right_user">{`Hello ${name}! 👋🏼`}</div>
           </div>
