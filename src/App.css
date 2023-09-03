@@ -1,0 +1,6 @@
+.App {
+  height: 100vh;
+
+  background: linear-gradient(to left, green, white);
+  font-family: sans-serif;
+}
