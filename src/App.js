@@ -10,18 +10,19 @@ import LeaderBoard from "./Components/LeaderBoard/LeaderBoard";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
+    // <Router>
+    <div className="App">
+      {/* <Header />
         <Routes>
           <Route exact path="/" element={<Login />} />
 
           <Route path="/Home" element={<Home />} />
           <Route path="/Game" element={<Game />} />
           <Route path="/leaderBoard" element={<LeaderBoard />} />
-        </Routes>
-      </div>
-    </Router>
+        </Routes> */}
+      <LeaderBoard />
+    </div>
+    // </Router>
   );
 }
 
