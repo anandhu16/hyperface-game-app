@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [queueFull, setQueueFull] = useState();
-  const [queueSize, setQueueSize] = useState();
+  const [userQueued, setUSerQueued] = useState();
   const location = useLocation();
+  const navigate = useNavigate();
   const userName = location.state.userName;
   const [OpponentName, setOpponentName] = useState();
 
@@ -14,8 +15,13 @@ const Home = () => {
   queue.addEventListener("message", (e) => {
     console.log(e);
     if (e.data !== userName) {
-      queueSize = queueSize + 1;
       setOpponentName(e.data);
+      console.log(e.data);
+      if (userQueued) {
+        navigate("/game", {
+          state: { userName: userName, OpponentName: OpponentName },
+        });
+      }
     }
   });
 
@@ -25,22 +31,27 @@ const Home = () => {
       if (tempQueueList.length === 2) {
         setQueueFull(true);
       } else {
-        tempQueueList.push(userName);
         setOpponentName(tempQueueList[0]);
+        tempQueueList.push(userName);
         localStorage.setItem("queueList", JSON.stringify(tempQueueList));
         queue.postMessage(userName);
+        if (userName && tempQueueList[0]) {
+          navigate("/game", {
+            state: { userName: userName, OpponentName: OpponentName },
+          });
+        }
       }
     } else {
       localStorage.setItem("queueList", JSON.stringify([userName]));
-      setQueueSize(1);
-      queue.postMessage([userName]);
+      setUSerQueued(true);
+      queue.postMessage(userName);
     }
   };
 
   return (
     <div>
       {!queueFull && <p>Click on the Play Button to Start the Game</p>}
-      {queueSize === 1 && <p>Waiting for Opponent</p>}
+      {userQueued && <p>Waiting for Opponent</p>}
       {queueFull && <p>No slots available</p>}
       <button
         className="button"
